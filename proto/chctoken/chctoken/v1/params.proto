@@ -1,0 +1,13 @@
+syntax = "proto3";
+package chctoken.chctoken.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "chctoken/x/chctoken/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "chctoken/x/chctoken/Params";
+  option (gogoproto.equal) = true;
+}
