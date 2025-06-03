@@ -1,5 +1,5 @@
 # chctoken
-**chctoken** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
+**chctoken** — це блокчейн на Cosmos SDK і Tendermint, створений через [Ignite CLI](https://ignite.com/cli).
 
 ## Get started
 
@@ -7,40 +7,55 @@
 ignite chain serve
 ```
 
-`serve` command installs dependencies, builds, initializes, and starts your blockchain in development.
+Команда `serve` встановлює залежності, збирає, ініціалізує та запускає блокчейн у режимі розробки.
 
 ### Configure
 
-Your blockchain in development can be configured with `config.yml`. To learn more, see the [Ignite CLI docs](https://docs.ignite.com).
+Блокчейн у режимі розробки можна налаштувати через `config.yml`. Детальніше — у [документації Ignite CLI](https://docs.ignite.com).
 
-### Web Frontend
+### Web Frontend (React + TypeScript + Yarn)
 
-Additionally, Ignite CLI offers both Vue and React options for frontend scaffolding:
+Фронтенд знаходиться у папці `frontend/`.
 
-For a Vue frontend, use: `ignite scaffold vue`
-For a React frontend, use: `ignite scaffold react`
-These commands can be run within your scaffolded blockchain project. 
+#### Запуск фронтенду:
 
+```
+cd frontend
+# встановити залежності (тільки перший раз або після змін)
+yarn install
+# запуск у режимі розробки
+yarn start
+```
 
-For more information see the [monorepo for Ignite front-end development](https://github.com/ignite/web).
+### Backend API (Django + Poetry)
 
-## Release
-To release a new version of your blockchain, create and push a new tag with `v` prefix. A new draft release with the configured targets will be created.
+Backend API знаходиться у папці `backend/`.
+
+#### Запуск бекенду:
+
+```
+cd backend
+poetry install
+poetry run python manage.py runserver 0.0.0.0:8000
+```
+
+### Release
+Щоб випустити нову версію блокчейну, створіть і запуште новий тег із префіксом `v`:
 
 ```
 git tag v0.1
 git push origin v0.1
 ```
 
-After a draft release is created, make your final changes from the release page and publish it.
+Після створення чернетки релізу завершіть оформлення на сторінці релізу та опублікуйте його.
 
 ### Install
-To install the latest version of your blockchain node's binary, execute the following command on your machine:
+Щоб встановити останню версію ноди, виконайте:
 
 ```
 curl https://get.ignite.com/username/chctoken@latest! | sudo bash
 ```
-`username/chctoken` should match the `username` and `repo_name` of the Github repository to which the source code was pushed. Learn more about [the install process](https://github.com/allinbits/starport-installer).
+`username/chctoken` має відповідати вашому GitHub-репозиторію. Детальніше — [процес встановлення](https://github.com/allinbits/starport-installer).
 
 ## Learn more
 
