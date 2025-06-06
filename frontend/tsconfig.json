@@ -1,26 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "typeRoots": ["frontend/node_modules/@types"],
+    "allowJs": true,
     "moduleResolution": "node",
+    "paths": {
+      "@/*": ["frontend/src/apps/*"]
+    },
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "skipLibCheck": true,
+    "types": ["node"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["frontend/src/**/*", "frontend/src/apps/**/*"]
 }

@@ -1,0 +1,27 @@
+# Dockerfile для Django API (backend)
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Встановлюємо Poetry
+RUN pip install --no-cache-dir poetry \
+    && pip config set global.timeout 120 \
+    && pip config set global.index-url https://pypi.org/simple
+
+# Копіюємо pyproject.toml та poetry.lock
+COPY pyproject.toml poetry.lock ./
+
+# Встановлюємо залежності з retry та дзеркалом PyPI
+RUN poetry config repositories.pypi https://pypi.org/simple \
+    && poetry config installer.max-workers 1 \
+    && for i in 1 2 3; do poetry install --no-interaction --no-ansi --no-root && break || sleep 10; done
+
+# Копіюємо код
+COPY . .
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 2000
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:2000"]

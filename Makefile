@@ -103,3 +103,13 @@ govulncheck:
 	@govulncheck ./...
 
 .PHONY: govet govulncheck
+
+###################
+### Frontend Run ###
+###################
+
+frontend:
+	@echo "Запуск фронтенду (user/admin)..."
+	cd frontend && yarn install && yarn dev
+
+.PHONY: frontend

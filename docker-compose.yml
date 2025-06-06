@@ -4,22 +4,23 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    command: poetry run python manage.py runserver 0.0.0.0:8000
+      dockerfile: ../docker/Dockerfile.backend
+    # Використовуємо entrypoint.sh, який сам запустить сервер
+    entrypoint: /entrypoint.sh
     volumes:
       - ./backend:/app
+      - ./backend/entrypoint.sh
     ports:
-      - "8000:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=backend.settings
+      - "2000:2000"
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    command: yarn start
+      dockerfile: ../docker/Dockerfile.frontend
+    entrypoint: /entrypoint.sh
     volumes:
       - ./frontend:/app
+      - ./frontend/entrypoint.sh
     ports:
       - "3000:3000"
     environment:
@@ -28,11 +29,16 @@ services:
   chain:
     build:
       context: .
-      dockerfile: Dockerfile.chain
+      dockerfile: ./docker/Dockerfile.chain
     command: ignite chain serve
     volumes:
       - ./:/workspace
     ports:
-      - "26657:26657"
-      - "1317:1317"
-      - "9090:9090"
+      - "1000:1000"  # Tendermint RPC
+      - "1001:1001"  # REST API
+      - "1002:1002"  # gRPC
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]

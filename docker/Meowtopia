@@ -1,0 +1,4 @@
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./frontend:/app
+      - ./frontend/entrypoint.sh:/entrypoint.sh
