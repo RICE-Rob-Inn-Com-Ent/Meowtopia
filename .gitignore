@@ -1,9 +1,46 @@
-vue/node_modules
-vue/dist
-release/
-.idea/
-.vscode/
-.DS_Store
-*.dot
+# Node.js/Yarn (frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
+frontend/.cache/
+frontend/web/node_modules/
+frontend/web/dist/
+frontend/web/.next/
+frontend/web/.cache/
+
+# Python/Poetry (backend)
+backend/.venv/
+backend/__pycache__/
+backend/.mypy_cache/
+backend/.pytest_cache/
+backend/.coverage
+backend/.env
+backend/.DS_Store
+
+# Go build/cache
+build/
+bin/
+*.exe
+*.test
+*.out
 *.log
-*.ign
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Testnets, local chains, generated files
+.testnets/
+*.localnet/
+*.testnet/
+*.bak
+
+# Env files (already present, but just in case)
+.env
+.env.*

@@ -112,4 +112,8 @@ frontend:
 	@echo "Запуск фронтенду (user/admin)..."
 	cd frontend && yarn install && yarn dev
 
-.PHONY: frontend
+web:
+	@echo "Запуск фронтенду (user/admin/god)..."
+	cd frontend/web && yarn install && yarn dev
+
+.PHONY: frontend web
