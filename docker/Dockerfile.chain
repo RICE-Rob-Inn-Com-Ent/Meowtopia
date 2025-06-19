@@ -1,0 +1,19 @@
+# Dockerfile для Cosmos SDK/Ignite chain
+FROM golang:1.22-alpine
+
+WORKDIR /workspace
+
+RUN apk add --no-cache make git curl bash
+
+# Встановлюємо Ignite CLI, якщо його ще немає
+RUN if ! command -v ignite >/dev/null 2>&1; then \
+  curl https://get.ignite.com/ignite/cli! | bash; \
+  cp /root/.local/bin/ignite /usr/local/bin/ignite || cp /go/bin/ignite /usr/local/bin/ignite || true; \
+  fi
+
+RUN chmod +x /usr/local/bin/ignite
+
+COPY . .
+
+EXPOSE 1000 1001 1002
+CMD ["ignite", "chain", "serve"]

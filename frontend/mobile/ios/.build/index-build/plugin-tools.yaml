@@ -1,0 +1,47 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "IosApp-x86_64-unknown-linux-gnu-debug.module": ["<IosApp-x86_64-unknown-linux-gnu-debug.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<IosApp-x86_64-unknown-linux-gnu-debug.module>"]
+  "test": ["<IosApp-x86_64-unknown-linux-gnu-debug.module>"]
+default: "main"
+nodes:
+  "/home/mrdinkelman/Projects/chctoken/frontend/ios/Sources/IosApp/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mrdinkelman/Projects/chctoken/frontend/ios/Sources/IosApp/main.swift"]
+    outputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/sources"]
+    description: "Write auxiliary file /home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/sources"
+
+  "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--240261081E903778.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/home/mrdinkelman/snap/code/195/.local/share/swiftly/toolchains/6.1.2/usr/bin/swiftc"]
+    outputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--240261081E903778.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--240261081E903778.txt"
+
+  "<IosApp-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/IosApp.swiftmodule"]
+    outputs: ["<IosApp-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "C.IosApp-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/Sources/IosApp/main.swift","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--240261081E903778.txt","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/sources"]
+    outputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/IosApp.swiftmodule"]
+    description: "Compiling Swift Module 'IosApp' (1 sources)"
+    args: ["/home/mrdinkelman/snap/code/195/.local/share/swiftly/toolchains/6.1.2/usr/bin/swiftc","-module-name","IosApp","-emit-dependencies","-emit-module","-emit-module-path","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/IosApp.swiftmodule","-output-file-map","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/output-file-map.json","-incremental","@/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/sources","-I","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-enable-batch-mode","-Onone","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","IosApp_main","-swift-version","5","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-Xcc","-fno-omit-frame-pointer"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/home/mrdinkelman/Projects/chctoken/frontend/ios/Sources/IosApp/","/home/mrdinkelman/Projects/chctoken/frontend/ios/Package.swift","/home/mrdinkelman/Projects/chctoken/frontend/ios/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

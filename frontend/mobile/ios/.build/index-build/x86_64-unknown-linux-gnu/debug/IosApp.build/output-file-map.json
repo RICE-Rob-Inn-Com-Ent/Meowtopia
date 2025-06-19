@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/master.swiftdeps"
+  },
+  "/home/mrdinkelman/Projects/chctoken/frontend/ios/Sources/IosApp/main.swift": {
+    "dependencies": "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/main.d",
+    "object": "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/main.swift.o",
+    "swiftmodule": "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/main~partial.swiftmodule",
+    "swift-dependencies": "/home/mrdinkelman/Projects/chctoken/frontend/ios/.build/index-build/x86_64-unknown-linux-gnu/debug/IosApp.build/main.swiftdeps"
+  }
+}

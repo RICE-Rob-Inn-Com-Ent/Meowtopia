@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile.backend
+    # Використовуємо entrypoint.sh, який сам запустить сервер
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./backend:/app
+      - ./backend/entrypoint.sh
+    ports:
+      - "2000:2000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./frontend:/app
+      - ./frontend/entrypoint.sh
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  chain:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.chain
+    command: ignite chain serve
+    volumes:
+      - ./:/workspace
+    ports:
+      - "1000:1000"  # Tendermint RPC
+      - "1001:1001"  # REST API
+      - "1002:1002"  # gRPC
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: chctoken
+      POSTGRES_PASSWORD: chctoken
+      POSTGRES_DB: chctoken
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

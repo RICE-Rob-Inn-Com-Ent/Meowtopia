@@ -1,0 +1,36 @@
+site_name: Meowtopia – Dokumentacja
+site_description: Whitepaper projektu Meowtopia(Cat House)/chctoken
+site_author: Code-Rice sp. z o.o.
+site_url: https://meowtopia.app/docs/
+repo_url: https://github.com/RICE-Rob-Inn-Com-Ent/Meowtopia.git
+repo_name: Meowtopia
+
+nav:
+  - Start: docs/index.md
+  - Roadmapa: docs/roadmap.md
+  - FAQ: docs/faq.md
+  - Kontakt: docs/contact.md
+  - Dla samych upartych ^_^:
+      - Wprowadzenie: README.md
+      - Backend: backend/README.md
+      - Web: frontend/web/README.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - footnotes
+  - meta
+  - tables
+  - attr_list
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/RICE-Rob-Inn-Com-Ent/Meowtopia.git
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/ignite
